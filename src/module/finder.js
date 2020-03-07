@@ -7,7 +7,7 @@ const exceptions = require('../exceptions');
 class ModuleFinder {
   findModule(configFilePath, moduleName) {
     const configFileExports = this._getConfigFileExports(configFilePath);
-    const relativeModulePath = this._getRelativeModulePath(configFileExports, moduleName);
+    const relativeModulePath = this._getRelativeModulePath(configFileExports, moduleName, configFilePath);
     const modulePath = this._createModulePath(configFilePath, relativeModulePath);
     return this._requireModule(modulePath);
   }
@@ -19,8 +19,14 @@ class ModuleFinder {
 
     return configFileExports;
   }
-  _getRelativeModulePath(configFileExports, moduleName) {
-    return configFileExports[moduleName];
+
+  /** @todo: need to fix count of parameters */
+  _getRelativeModulePath(configFileExports, moduleName, configFilePath) {
+    const relativeModulePath = configFileExports[moduleName];
+    if( relativeModulePath === undefined )
+      return exceptions.throwModuleNameFieldDidNotFind(moduleName, configFilePath);
+
+    return relativeModulePath;
   }
   _createModulePath(configFilePath, relativeModulePath) {
     const configFileDirname = path.dirname(configFilePath);
