@@ -10,8 +10,8 @@ let exceptions = {
   throwModuleNameFieldDidNotFind(moduleName, configFilePath) {
     return `module name did not find {\n  module: ${moduleName}\n  path: ${configFilePath}\n}`;
   },
-  throwCannotResolveModulePath(moduleName, configFilePath) {
-    return `cannot resolve module path {\n  module: ${moduleName}\n  path: ${configFilePath}\n}`;
+  throwCannotResolveModulePath(moduleName, modulePath) {
+    return `cannot resolve module path {\n  module: ${moduleName}\n  path: ${modulePath}\n}`;
   },
   throwPathValueIsArray(configFileID, paths) {
     return 'more than one config file found with the same id {\n' +
