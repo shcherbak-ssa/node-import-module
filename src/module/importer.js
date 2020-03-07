@@ -1,6 +1,7 @@
 'use strict';
 
 const moduleFinder = require('./finder');
+const exceptions = require('../exceptions');
 
 class ModuleImporter {
   constructor(configFiles) {
@@ -13,7 +14,11 @@ class ModuleImporter {
   }
 
   _getConfigFilePath(configFileID) {
-    return this._configFiles.getPath(configFileID);
+    const configFilePath = this._configFiles.getPath(configFileID);
+    if( configFilePath === undefined )
+      return exceptions.throwIDDoesNotExist(configFileID);
+
+    return configFilePath;
   }
   _findModule(configFilePath, moduleName) {
     return moduleFinder.findModule(configFilePath, moduleName);

@@ -22,7 +22,7 @@ exceptions = new Proxy(exceptions, {
   get(target, property) {
     return (...params) => {
       const message = target[property](...params);
-      return new Error(message);
+      throw new Error(message);
     }
   }
 })
