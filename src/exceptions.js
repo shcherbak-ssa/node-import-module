@@ -14,7 +14,9 @@ let exceptions = {
     return `cannot resolve module path {\n  module: ${moduleName}\n  path: ${configFilePath}\n}`;
   },
   throwPathValueIsArray(configFileID, paths) {
-    return `more than one config file found with the same id {\n  id: ${configFileID}\n  paths: ${paths}\n}`;
+    return 'more than one config file found with the same id {\n' +
+            `  id: ${configFileID}\n` +
+            `  paths: [\n    ${paths.join('\n    ')}\n  ]\n}`;
   }
 };
 
