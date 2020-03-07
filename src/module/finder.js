@@ -18,7 +18,8 @@ class ModuleFinder {
     return configFileExports[moduleName];
   }
   _createModulePath(configFilePath, relativeModulePath) {
-    return path.relative(configFilePath, relativeModulePath);
+    const configFileDirname = path.dirname(configFilePath);
+    return path.resolve(configFileDirname, relativeModulePath);
   }
   _requireModule(modulePath) {
     return require(modulePath);

@@ -1,14 +1,13 @@
 'use strict';
 
+const ModuleImporter = require('./module/importer');
 const ConfigFilesFinder = require('./config-files/finder');
 const ConfigFilesSetter = require('./config-files/setter');
 
 class Launcher {
   init() {
     const configFiles = this._initConfigFiles();
-    console.log('configFiles size:', configFiles._paths.size);
-    console.log('configFiles keys:', configFiles._paths.keys());
-    console.log('configFiles values:', configFiles._paths.values());
+    return new ModuleImporter(configFiles);
   }
 
   _initConfigFiles() {
