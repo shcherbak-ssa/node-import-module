@@ -1,0 +1,23 @@
+{
+  "name": "node-import-module",
+  "version": "0.1.0",
+  "description": "",
+  "main": "nim.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shcherbak-ssa/node-import-module.git"
+  },
+  "keywords": [
+    "import",
+    "module"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shcherbak-ssa/node-import-module/issues"
+  },
+  "homepage": "https://github.com/shcherbak-ssa/node-import-module#readme"
+}
