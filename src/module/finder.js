@@ -2,6 +2,7 @@
 
 const path = require('path');
 const configFilesGetter = require('../config-files/getter');
+const exceptions = require('../exceptions');
 
 class ModuleFinder {
   findModule(configFilePath, moduleName) {
@@ -12,7 +13,11 @@ class ModuleFinder {
   }
 
   _getConfigFileExports(configFilePath) {
-    return configFilesGetter.getConfigFileExports(configFilePath);
+    const configFileExports = configFilesGetter.getConfigFileExports(configFilePath);
+    if( configFileExports === undefined )
+      return exceptions.throwExportsFieldDidNotFind(configFilePath);
+
+    return configFileExports;
   }
   _getRelativeModulePath(configFileExports, moduleName) {
     return configFileExports[moduleName];
