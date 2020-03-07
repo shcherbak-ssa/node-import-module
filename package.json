@@ -5,7 +5,7 @@
   "main": "nim.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node nim.js"
+    "start": "node dir/index.js"
   },
   "repository": {
     "type": "git",
