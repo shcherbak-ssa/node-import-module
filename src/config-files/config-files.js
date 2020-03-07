@@ -6,6 +6,8 @@ class ConfigFiles {
   }
 
   setPath(configFileID, configFilePath) {
+    if( configFileID === undefined ) return;
+    
     if( this._paths.has(configFileID) ) {
       let paths = this._paths.get(configFileID);
       if( !Array.isArray(paths) ) paths = [paths];
