@@ -2,7 +2,6 @@
 ### Files ###
 .eslintrc.yml
 jsconfig.json
-nim.js
 
 ### Folders ###
 dir/
