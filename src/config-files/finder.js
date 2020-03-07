@@ -15,7 +15,7 @@ class ConfigFilesFinder {
   _find() {
     return globby.sync(CONFIG_FILE_PATTERN, {
       expandDirectories: true,
-      gitignore: true
+      gitignore: false // @TODO: need to change
     });
   }
   _join(foundPaths, processDirname) {

@@ -11,9 +11,9 @@ class ConfigFilesSetter {
   setConfigFilePaths(foundPaths) {
     foundPaths.forEach((configFilePath) => {
       const configFileID = this._getConfigFileID(configFilePath);
-      this._saveConfigFile(configFileID, configFilePath);
+      this._setConfigFile(configFileID, configFilePath);
     });
-    
+
     return this._configFiles;
   }
 
