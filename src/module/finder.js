@@ -25,4 +25,5 @@ class ModuleFinder {
   }
 }
 
-module.exports = ModuleFinder;
+const moduleFinder = new ModuleFinder();
+module.exports = moduleFinder;
