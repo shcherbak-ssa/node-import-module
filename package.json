@@ -4,7 +4,8 @@
   "description": "",
   "main": "nim.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node nim.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,7 @@
     "url": "https://github.com/shcherbak-ssa/node-import-module/issues"
   },
   "homepage": "https://github.com/shcherbak-ssa/node-import-module#readme",
-  "dependencies": {}
+  "dependencies": {
+    "globby": "^11.0.0"
+  }
 }
