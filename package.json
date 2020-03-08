@@ -4,8 +4,7 @@
   "description": "",
   "main": "nim.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dir/index.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -24,5 +23,10 @@
   "dependencies": {
     "kind-of": "^6.0.3",
     "readdir-enhanced": "^6.0.0"
+  },
+  "devDependencies": {
+    "del": "^5.1.0",
+    "mocha": "^7.1.0",
+    "struc": "^1.0.1"
   }
 }

@@ -1,8 +1,7 @@
-
 ### Files ###
 .eslintrc.yml
 jsconfig.json
 
 ### Folders ###
-dir/
+tests/
 node_modules/
