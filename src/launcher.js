@@ -5,22 +5,18 @@ const ConfigFilesFinder = require('./config-files/finder');
 const ConfigFilesSetter = require('./config-files/setter');
 
 class Launcher {
-  init() {
-    const configFiles = this._initConfigFiles();
+  init(parentDirname) {
+    const configFiles = this._initConfigFiles(parentDirname);
     return new ModuleImporter(configFiles);
   }
 
-  _initConfigFiles() {
-    const processDirname = this._getProcessDirname();
+  _initConfigFiles(parentDirname) {
     const configFilesFinder = new ConfigFilesFinder();
     const configFilesSetter = new ConfigFilesSetter();
 
-    const foundPaths = configFilesFinder.findAllConfigFiles(processDirname);
+    const foundPaths = configFilesFinder.findAllConfigFiles(parentDirname);
     const configFiles = configFilesSetter.setConfigFilePaths(foundPaths);
     return configFiles;
-  }
-  _getProcessDirname() {
-    return process.cwd();
   }
 }
 

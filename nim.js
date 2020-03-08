@@ -1,9 +1,11 @@
 'use strict';
 
+const path = require('path');
 const Launcher = require('./src/launcher');
 
 const launcher = new Launcher();
-const moduleImporter = launcher.init();
+const parentDirname = path.dirname(module.parent.filename);
+const moduleImporter = launcher.init(parentDirname);
 
 function importModule(id, moduleName) {
   const configFileID = id;
