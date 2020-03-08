@@ -1,6 +1,6 @@
 'use strict';
 
-let exceptions = {
+const exceptions = {
   throwIDDoesNotExist(configFileID) {
     return `config file with id ${configFileID} does not exist`;
   },
@@ -20,7 +20,7 @@ let exceptions = {
   }
 };
 
-exceptions = new Proxy(exceptions, {
+const proxyExceptions = new Proxy(exceptions, {
   get(target, property) {
     return (...params) => {
       const message = target[property](...params);
@@ -29,4 +29,4 @@ exceptions = new Proxy(exceptions, {
   }
 })
 
-module.exports = exceptions;
+module.exports = proxyExceptions;
