@@ -2,7 +2,7 @@
 
 const path = require('path');
 const Launcher = require('./src/launcher');
-const checkParameterTypes = require('./src/check-types');
+const {checkParameterTypes} = require('./src/check-types');
 
 const launcher = new Launcher();
 const parentDirname = path.dirname(module.parent.filename);

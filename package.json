@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/shcherbak-ssa/node-import-module#readme",
   "dependencies": {
+    "kind-of": "^6.0.3",
     "readdir-enhanced": "^6.0.0"
   }
 }
