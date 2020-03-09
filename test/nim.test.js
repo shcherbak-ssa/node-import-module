@@ -18,7 +18,7 @@ const {
 const Launcher = require('../src/launcher');
 
 describe('Test node-import-module package', () => {
-  before(() => {
+  before('file structure creation', () => {
     setTestConfigFilePaths(__dirname, config);
     createFileStructure(structure);
   });
@@ -33,7 +33,26 @@ describe('Test node-import-module package', () => {
     });
   });
 
-  after(() => {
+  describe('Test import function', () => {
+    it('user component', () => {
+      const importModule = require('../nim');
+      const createUserAction = importModule('user', 'create');
+      const deleteUserAction = importModule('user', 'delete');
+
+      assert.equal(createUserAction, config.filesContent.user.create);
+      assert.equal(deleteUserAction, config.filesContent.user.delete);
+    });
+    it('project component', () => {
+      const importModule = require('../nim');
+      const createProjectAction = importModule('project', 'create');
+      const deleteProjectAction = importModule('project', 'delete');
+
+      assert.equal(createProjectAction, config.filesContent.project.create);
+      assert.equal(deleteProjectAction, config.filesContent.project.delete);
+    });
+  });
+
+  after('file structure deletion', () => {
     deleteFileStructure();
   })
 });
