@@ -16,11 +16,7 @@ class ModuleFinder {
   }
 
   _getConfigFileExports(configFilePath) {
-    const configFileExports = configFilesGetter.getConfigFileExports(configFilePath);
-    if( configFileExports === undefined )
-      return exceptions.throwExportsFieldDidNotFind(configFilePath);
-
-    return configFileExports;
+    return configFilesGetter.getConfigFileExports(configFilePath);
   }
 
   /** @todo: need to fix count of parameters */
