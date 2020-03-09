@@ -1,25 +1,53 @@
 'use strict';
 
-const {getFileContent, getExportsFileContent} = require('./utils');
-const {filesContent} = require('../test-config');
+const {
+  CREATE_APP_CONTENT,
+  APP_CONFIG_CONTENT,
+  LAUNCHER_CONTENT
+} = require('./files-content');
 
-module.exports = {
+function getExportsConfigFileContent(id, exports = {}) {
+  return `module.exports = { id: '${id}', exports: ${JSON.stringify(exports)} };`
+}
+function getExportsConfigFileContentWithoutID() {
+  return 'module.exports = { exports: {} };'
+}
+function getFileContent(content) {
+  return `module.exports = ${content};`
+}
+
+const testStructure = {
   components: {
-    user: {
+    app: {
       actions: {
-        'create-user.js': getFileContent(filesContent.user.create),
-        'delete-user.js': getFileContent(filesContent.user.delete)
+        'create-app.js': getFileContent(CREATE_APP_CONTENT)
       },
-      'exports.nim.js': getExportsFileContent('user')
+      config: {
+        'app-config.json': getFileContent(JSON.stringify(APP_CONFIG_CONTENT))
+      },
+      launcher: {
+        'launcher.js': getFileContent(LAUNCHER_CONTENT),
+        'index.js': 'module.exports = require(\'./launcher\');'
+      },
+      'app.nim.js': getExportsConfigFileContent(
+        'app',
+        {
+          launcher: './launcher',
+          config: './config/add-config.json',
+          create: './actions/create-app.js'
+        }
+      )
+    },
+    user: {
+      'user.nim.js': getExportsConfigFileContentWithoutID()
     },
     project: {
-      actions: {
-        rest: {
-          'create-project.js': getFileContent(filesContent.project.create),
-          'delete-project.js': getFileContent(filesContent.project.delete)
-        }
-      },
-      'exports.nim.js': getExportsFileContent('project')
+      'project.nim.js': getExportsConfigFileContent('project')
+    },
+    product: {
+      'product.nim.js': getExportsConfigFileContent('project')
     }
   }
-}
+};
+
+module.exports = testStructure;
