@@ -15,12 +15,8 @@ class ModuleImporter {
 
   _getConfigFilePath(configFileID) {
     const configFilePath = this._configFiles.getPath(configFileID);
-    
     if( configFilePath === undefined )
       return exceptions.throwIDDoesNotExist(configFileID);
-
-    if( Array.isArray(configFilePath) )
-      return exceptions.throwPathValueIsArray(configFileID, configFilePath);
 
     return configFilePath;
   }
