@@ -8,6 +8,10 @@ const launcher = new Launcher();
 const parentDirname = path.dirname(module.parent.filename);
 const moduleImporter = launcher.init(parentDirname);
 
+/**
+ * @param {String} exportsFileID 
+ * @param {String} moduleName 
+ */
 function importModule(exportsFileID, moduleName) {
   checkParameterTypes(exportsFileID, moduleName);
   return moduleImporter.importModule(exportsFileID, moduleName);
