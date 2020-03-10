@@ -10,50 +10,38 @@ const {expect} = require('chai');
 const testStructure = require('./src/structure');
 const {createFileStructure, deleteFileStructure} = require('./src/utils');
 
-const {
-  CREATE_APP_CONTENT,
-  APP_CONFIG_CONTENT,
-  LAUNCHER_CONTENT
-} = require('./src/files-content');
-
-const {
-  EXPECT_APP_CONFIG_FILE_PATH,
-  EXPECT_USER_CONFIG_FILE_PATH,
-  EXPECT_PROJECT_CONFIG_FILE_PATH,
-  EXPECT_PRODUCT_CONFIG_FILE_PATH
-} = require('./src/expect-paths');
-
-const Launcher = require('../src/launcher');
-let configFiles = {};
+let importModule = {};
 
 describe('Test node-import-module package', () => {
   before(() => {
     createFileStructure(testStructure);
-
-    const launcher = new Launcher();
-    configFiles = launcher._initConfigFiles(__dirname);
+    importModule = require('../nim');
   });
   after(() => { deleteFileStructure() });
 
-  describe('Test config files search', () => {
-    it('found app config file', () => {
-      const foundAppConfigFilePath = configFiles.getPath('app');
-      expect(foundAppConfigFilePath).to.equal(EXPECT_APP_CONFIG_FILE_PATH);
-    });
+  it('import the create-app.js file content, which should be a boolean with the value \'true\'', () => {
+    const createApp = importModule('app', 'create');
+    
+    expect(createApp)
+      .to.be.a('boolean')
+      .and.equal(true);
+  });
+  it('import the app-config.json content, which should be an object with property \'name\' with the value \'nim\'', () => {
+    const appConfig = importModule('app', 'config');
+    
+    expect(appConfig)
+      .to.be.an('object')
+      .and.has.property('name');
 
-    it('found user config files', () => {
-      const foundUserConfigFilePath = configFiles.getPath('user');
-      expect(foundUserConfigFilePath).to.equal(EXPECT_USER_CONFIG_FILE_PATH);
-    });
+    expect(appConfig.name)
+      .to.be.a('string')
+      .and.equal('nim');
+  });
+  it('import the launcher content, which should be a string with value \'launcher\'', () => {
+    const appLauncher = importModule('app', 'launcher');
 
-    it('the product config file is undefined', () => {
-      const foundProductConfigFilePath = configFiles.getPath('product');
-      expect(foundProductConfigFilePath).to.equal(undefined);  
-    });
-
-    it('found two project config file', () => {
-      const foundProjectConfigFilePath = configFiles.getPath('project');
-      expect(foundProjectConfigFilePath).to.be.an('array').with.lengthOf(2);
-    });
+    expect(appLauncher)
+      .to.be.a('string')
+      .and.equal('launcher');
   });
 });
