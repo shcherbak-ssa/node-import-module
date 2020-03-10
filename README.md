@@ -1,6 +1,6 @@
 # node-import-module #
 
-This is an npm package which should help to import modules easier.
+This is an npm package which saves you from long paths to modules.
 
 <details>
 <summary><strong>Table of contents</strong></summary>
@@ -10,7 +10,7 @@ This is an npm package which should help to import modules easier.
  - [How does this work?](#how-does-this-work)
  - [API](#api)
    * [Import funtions](#import-function)
-   * [Exports-config file](#exports-config-file)
+   * [nim file](#nim-file)
  - [Footer](#footer)
    * [Author](#author)
    * [License](#license) 
@@ -29,29 +29,29 @@ $ npm install node-import-module
 
 ```
 - components
-  - project
+  - app
     - actions
-      - create-project.js
+      - create-app.js
     - config
-      - project-config.json
+      - app-config.json
     - launcher
       - launcher.js
       - index.js
-    - exports.nim.js
+    - app.nim.js
 - main.js
 ```
 
-*exports.nim.js*
+*app.nim.js*
 
 ```javascript
 'use struct'
 
 module.exports = {
-  id: 'project',
+  id: 'app',
   exports: {
     launcher: './launcher',
-    config: './config/project-config.json',
-    create: './actions/create-project.js'
+    config: './config/app-config.json',
+    create: './actions/create-app.js'
   }
 };
 ```
@@ -63,24 +63,22 @@ module.exports = {
 
 const importModule = require('nim');
 
-const initProject = importModule('project', 'launcher');
-// initProject === require('./components/project/launcher')
+const initApp = importModule('app', 'launcher');
+// initApp === require('./components/app/launcher')
 
-const projectConfig = importModule('project', 'config');
-// projectConfig === require('./components/project/config/project-config.json')
+const appConfig = importModule('app', 'config');
+// appConfig === require('./components/app/config/app-config.json')
 
-const createProject = importModule('project', 'create');
-// createProject === require('./components/project/actions/create-project')
+const createApp = importModule('app', 'create');
+// createApp === require('./components/app/actions/create-app')
 ```
 
 ## How does this work? ##
 
-After the first import package finds all exports-config files relative to the calling module.
-It gets the *id* field of the found files and
+After the first import the package finds all *nim* files relative to the calling module.
+It gets the *id* fields of the found files and saves their paths as `id => path` if everthing is okay.
 
- * saves their paths as `id => path` if everthing is okay
- * does not save the found file if it did not find the *id* field
- * saves paths as an array if it found a few files with the same *id* field
+It throws an exception if it did not find the *id* field or found a few files with the same *id* field
 
 This action will happen once.
 It is desirable that the first import be in the main file.
@@ -113,23 +111,23 @@ Returns a found module or throw exception if an error happens.
  - **moduleName : String**<br>
    One of the keys of the exports object in the exports-config file.
 
-### Exports-config file ###
+### nim file ###
 
 ---------------------------
 
 A file that contains the paths of files to be exported.
-The exports-config file name can be any, but must satisfy the pattern `*.nim.js`.
+The nim file name can be any, but must satisfy the pattern `*.nim.js`.
 
 *Content:*
 
  - **id : String**<br>
-   The unique identificator of the exports-config file.
+   The unique identificator of the nim file.
 
  - **exports : Object**<br>
    List of export modules `name => path`.
 
    * **name : String** - The unique name of the module.
-   * **path** - The path to the module relative to the current exports-config file.
+   * **path** - The path to the module relative to the current nim file.
 
 ## Footer ##
 
