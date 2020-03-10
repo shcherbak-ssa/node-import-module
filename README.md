@@ -107,28 +107,28 @@ Returns a found module or throw exception if an error happens.
 *Parameters:*
 
  - **configFileID : String**<br>
-   The *id* field in one of the exports-config files.
+   The *id* field in one of the *nim* files.
 
  - **moduleName : String**<br>
-   One of the keys of the exports object in the exports-config file.
+   One of the keys of the exports object in the *nim* file.
 
-### nim file ###
+### *nim* file ###
 
 ---------------------------
 
 A file that contains the paths of files to be exported.
-The nim file name can be any, but must satisfy the pattern `*.nim.js`.
+The *nim* file name can be any, but must satisfy the pattern `*.nim.js`.
 
 *Content:*
 
  - **id : String**<br>
-   The unique identificator of the nim file.
+   The unique identificator of the *nim* file.
 
  - **exports : Object**<br>
    List of export modules `name => path`.
 
    * **name : String** - The unique name of the module.
-   * **path** - The path to the module relative to the current nim file.
+   * **path** - The path to the module relative to the current *nim* file.
 
 ## Footer ##
 
