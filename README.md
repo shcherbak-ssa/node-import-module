@@ -99,8 +99,6 @@ require('node-import-module');
 
 ### Import function ###
 
------------------------
-
 **importModule( exportsFileID : String, moduleName : String ) : Module**
 
 Returns a found module or throw exception if an error happens.
@@ -114,8 +112,6 @@ Returns a found module or throw exception if an error happens.
    One of the keys of the exports object in the *exports* file.
 
 ### *Exports* file ###
-
-----------------------
 
 A file that contains the paths of files to be exported.
 The *exports* file name can be any, but must satisfy the pattern `*.exports.js`.
@@ -135,20 +131,15 @@ The *exports* file name can be any, but must satisfy the pattern `*.exports.js`.
 
 ### Issues ###
 
---------------
-
  - [Bugs](https://github.com/shcherbak-ssa/node-import-module/issues)
+ - [Advices](https://github.com/shcherbak-ssa/node-import-module/issues)
  - [My bad English](https://github.com/shcherbak-ssa/node-import-module/issues/1)
 
 ### Author ###
 
---------------
-
 *Shcherbakov Stanislav* - [github/shcherbak-ssa](https://github.com/shcherbak-ssa)
 
 ### License ###
-
----------------
 
 Copyright &copy; 2020 [Stanislav Shcherbakov](https://github.com/shcherbak-ssa).
 Released under the [MIT License](LICENSE).
