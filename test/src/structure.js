@@ -7,13 +7,13 @@ const testStructure = {
         'create-app.js': 'module.exports = true;'
       },
       config: {
-        'app-config.json': '{"name": "nim"}'
+        'app-config.json': '{"name": "node-import-module"}'
       },
       launcher: {
         'launcher.js': `module.exports = 'launcher';`,
         'index.js': 'module.exports = require(\'./launcher\');'
       },
-      'app.nim.js': `module.exports = {
+      'app.exports.js': `module.exports = {
                       id: 'app',
                       exports: {
                         launcher: './launcher',

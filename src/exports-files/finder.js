@@ -3,11 +3,11 @@
 const path = require('path');
 const {readdirSync} = require('readdir-enhanced');
 
-const CONFIG_FILE_PATTERN = '**/*.nim.js';
+const EXPORTS_FILE_PATTERN = '**/*.exports.js';
 
-class ConfigFilesFinder {
+class ExportsFilesFinder {
 
-  findAllConfigFiles(parentDirname) {
+  findAllExportsFiles(parentDirname) {
     const foundPaths = this._find(parentDirname);
     return this._join(foundPaths, parentDirname);
   }
@@ -15,7 +15,7 @@ class ConfigFilesFinder {
   _find(parentDirname) {
     return readdirSync(parentDirname, {
       deep: true,
-      filter: CONFIG_FILE_PATTERN
+      filter: EXPORTS_FILE_PATTERN
     });
   }
   _join(foundPaths, parentDirname) {
@@ -23,4 +23,4 @@ class ConfigFilesFinder {
   }
 }
 
-module.exports = ConfigFilesFinder;
+module.exports = ExportsFilesFinder;

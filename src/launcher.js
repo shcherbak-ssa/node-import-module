@@ -1,22 +1,22 @@
 'use strict';
 
 const ModuleImporter = require('./module/importer');
-const ConfigFilesFinder = require('./config-files/finder');
-const ConfigFilesSetter = require('./config-files/setter');
+const ExportsFilesFinder = require('./exports-files/finder');
+const ExportsFilesSetter = require('./exports-files/setter');
 
 class Launcher {
   init(parentDirname) {
-    const configFiles = this._initConfigFiles(parentDirname);
-    return new ModuleImporter(configFiles);
+    const exportsFiles = this._initNimFiles(parentDirname);
+    return new ModuleImporter(exportsFiles);
   }
 
-  _initConfigFiles(parentDirname) {
-    const configFilesFinder = new ConfigFilesFinder();
-    const configFilesSetter = new ConfigFilesSetter();
+  _initNimFiles(parentDirname) {
+    const exportsFilesFinder = new ExportsFilesFinder();
+    const exportsFilesSetter = new ExportsFilesSetter();
 
-    const foundPaths = configFilesFinder.findAllConfigFiles(parentDirname);
-    const configFiles = configFilesSetter.setConfigFilePaths(foundPaths);
-    return configFiles;
+    const foundPaths = exportsFilesFinder.findAllExportsFiles(parentDirname);
+    const exportsFiles = exportsFilesSetter.setExportsFilePaths(foundPaths);
+    return exportsFiles;
   }
 }
 

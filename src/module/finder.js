@@ -2,34 +2,34 @@
 
 const path = require('path');
 const fs = require('fs');
-const configFilesGetter = require('../config-files/getter');
+const exportsFilesGetter = require('../exports-files/getter');
 const exceptions = require('../exceptions');
 
 class ModuleFinder {
-  findModule(configFilePath, moduleName) {
-    const configFileExports = this._getConfigFileExports(configFilePath);
-    const relativeModulePath = this._getRelativeModulePath(configFileExports, moduleName, configFilePath);
-    const modulePath = this._createModulePath(configFilePath, relativeModulePath);
+  findModule(exportsFilePath, moduleName) {
+    const exportsFileExports = this._getExportsFileExports(exportsFilePath);
+    const relativeModulePath = this._getRelativeModulePath(exportsFileExports, moduleName, exportsFilePath);
+    const modulePath = this._createModulePath(exportsFilePath, relativeModulePath);
 
     this._checkIfModuleExists(modulePath, moduleName);
     return this._requireModule(modulePath);
   }
 
-  _getConfigFileExports(configFilePath) {
-    return configFilesGetter.getConfigFileExports(configFilePath);
+  _getExportsFileExports(exportsFilePath) {
+    return exportsFilesGetter.getExportsFileExports(exportsFilePath);
   }
 
   /** @todo: need to fix count of parameters */
-  _getRelativeModulePath(configFileExports, moduleName, configFilePath) {
-    const relativeModulePath = configFileExports[moduleName];
+  _getRelativeModulePath(exportsFileExports, moduleName, exportsFilePath) {
+    const relativeModulePath = exportsFileExports[moduleName];
     if( relativeModulePath === undefined )
-      return exceptions.throwModuleNameFieldDidNotFind(moduleName, configFilePath);
+      return exceptions.throwModuleNameFieldDidNotFind(moduleName, exportsFilePath);
 
     return relativeModulePath;
   }
-  _createModulePath(configFilePath, relativeModulePath) {
-    const configFileDirname = path.dirname(configFilePath);
-    return path.resolve(configFileDirname, relativeModulePath);
+  _createModulePath(exportsFilePath, relativeModulePath) {
+    const exportsFileDirname = path.dirname(exportsFilePath);
+    return path.resolve(exportsFileDirname, relativeModulePath);
   }
   _checkIfModuleExists(modulePath, moduleName) {
     if( !fs.existsSync(modulePath) ) 

@@ -4,24 +4,24 @@ const moduleFinder = require('./finder');
 const exceptions = require('../exceptions');
 
 class ModuleImporter {
-  constructor(configFiles) {
-    this._configFiles = configFiles;
+  constructor(exportsFiles) {
+    this._exportsFiles = exportsFiles;
   }
 
-  importModule(configFileID, moduleName) {
-    const configFilePath = this._getConfigFilePath(configFileID);
-    return this._findModule(configFilePath, moduleName);
+  importModule(exportsFileID, moduleName) {
+    const exportsFilePath = this._getExportsFilePath(exportsFileID);
+    return this._findModule(exportsFilePath, moduleName);
   }
 
-  _getConfigFilePath(configFileID) {
-    const configFilePath = this._configFiles.getPath(configFileID);
-    if( configFilePath === undefined )
-      return exceptions.throwIDDoesNotExist(configFileID);
+  _getExportsFilePath(exportsFileID) {
+    const exportsFilePath = this._exportsFiles.getPath(exportsFileID);
+    if( exportsFilePath === undefined )
+      return exceptions.throwIDDoesNotExist(exportsFileID);
 
-    return configFilePath;
+    return exportsFilePath;
   }
-  _findModule(configFilePath, moduleName) {
-    return moduleFinder.findModule(configFilePath, moduleName);
+  _findModule(exportsFilePath, moduleName) {
+    return moduleFinder.findModule(exportsFilePath, moduleName);
   }
 }
 

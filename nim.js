@@ -8,9 +8,9 @@ const launcher = new Launcher();
 const parentDirname = path.dirname(module.parent.filename);
 const moduleImporter = launcher.init(parentDirname);
 
-function importModule(configFileID, moduleName) {
-  checkParameterTypes(configFileID, moduleName);
-  return moduleImporter.importModule(configFileID, moduleName);
+function importModule(exportsFileID, moduleName) {
+  checkParameterTypes(exportsFileID, moduleName);
+  return moduleImporter.importModule(exportsFileID, moduleName);
 }
 
 module.exports = importModule;

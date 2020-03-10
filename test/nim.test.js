@@ -19,14 +19,16 @@ describe('Test node-import-module package', () => {
   });
   after(() => { deleteFileStructure() });
 
-  it('import the create-app.js file content, which should be a boolean with the value \'true\'', () => {
+  it('import the create-app.js file content, ' +
+     'which should be a boolean with the value \'true\'', () => {
     const createApp = importModule('app', 'create');
     
     expect(createApp)
       .to.be.a('boolean')
       .and.equal(true);
   });
-  it('import the app-config.json content, which should be an object with property \'name\' with the value \'nim\'', () => {
+  it('import the app-config.json content, ' +
+     'which should be an object with property \'name\' with the value \'node-import-module\'', () => {
     const appConfig = importModule('app', 'config');
     
     expect(appConfig)
@@ -35,7 +37,7 @@ describe('Test node-import-module package', () => {
 
     expect(appConfig.name)
       .to.be.a('string')
-      .and.equal('nim');
+      .and.equal('node-import-module');
   });
   it('import the launcher content, which should be a string with value \'launcher\'', () => {
     const appLauncher = importModule('app', 'launcher');
