@@ -1,6 +1,6 @@
 # node-import-module #
 
-This is an npm package which saves you from long paths to modules.
+This is an npm package that saves you from long paths to modules.
 
 <details>
 <summary><strong>Table of contents</strong></summary>
@@ -31,7 +31,8 @@ $ npm install node-import-module
 - components
   - app
     - actions
-      - create-app.js
+      - rest
+        - create-app.js
     - config
       - app-config.json
     - launcher
@@ -51,7 +52,7 @@ module.exports = {
   exports: {
     launcher: './launcher',
     config: './config/app-config.json',
-    create: './actions/create-app.js'
+    create: './actions/rest/create-app.js'
   }
 };
 ```
@@ -70,7 +71,7 @@ const appConfig = importModule('app', 'config');
 // appConfig === require('./components/app/config/app-config.json')
 
 const createApp = importModule('app', 'create');
-// createApp === require('./components/app/actions/create-app')
+// createApp === require('./components/app/actions/rest/create-app')
 ```
 
 ## How does this work? ##

@@ -1,7 +1,7 @@
 {
   "name": "node-import-module",
   "version": "0.1.0",
-  "description": "",
+  "description": "This is an npm package that saves you from long paths to modules.",
   "main": "nim.js",
   "scripts": {
     "test": "mocha"
@@ -11,10 +11,15 @@
     "url": "git+https://github.com/shcherbak-ssa/node-import-module.git"
   },
   "keywords": [
+    "require",
     "import",
     "module"
   ],
-  "author": "",
+  "author": {
+    "name": "Shcherbakov Stanislav",
+    "email": "shcherbak.ssa@gmail.com",
+    "url": "https://github.com/shcherbak-ssa"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shcherbak-ssa/node-import-module/issues"
