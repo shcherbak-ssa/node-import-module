@@ -44,15 +44,15 @@ describe('Test the object syntax', () => {
     const createApp = importModule.app('create');
     expect(createApp).to.be.a('boolean').and.equal(true);
   });
-  it('import the app-config.json as {importApp} = importModule', () => {
-    const {importApp} = importModule;
+  it('import the app-config.json as {app: importApp} = importModule', () => {
+    const {app: importApp} = importModule;
     const appConfig = importApp('config');
     
     expect(appConfig).to.be.an('object').and.has.property('name');
     expect(appConfig.name).to.be.a('string').and.equal('node-import-module');
   });
-  it('import the launcher as {app: importApp} = importModule', () => {
-    const {app: importApp} = importModule;
+  it('import the launcher as {importApp} = importModule', () => {
+    const {importApp} = importModule;
     const appLauncher = importApp('launcher');
 
     expect(appLauncher).to.be.a('string').and.equal('launcher');
