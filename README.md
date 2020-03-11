@@ -143,7 +143,7 @@ Returns a found module or throw exception if an error happens.
 You can use the [import function](#import-function) as an object,
 where properties should be equal the *id* fields of the *exports* files.
 
-*Parameters:* - see description above.
+*Parameters:* see description above.
 
 ### Destructuring syntax ###
 
