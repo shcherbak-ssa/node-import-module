@@ -166,8 +166,7 @@ const someModule = importApp('someModule');
 ```
 
 And this is not the best way. To make the code cleaner *node-import-module* supports *smart destructuring*:
-a property name can be replaced with the template `import[exportsFileID]`,
-where the first letter *exportsFileID* must be uppercase.
+a property name can be replaced with the template `import[exportsFileID]`, which should be in camelCase.
 
 ```javascript
 const {importApp} = require('node-import-module');
