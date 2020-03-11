@@ -2,10 +2,11 @@
 
 const kindOf = require('kind-of');
 
-function checkParameterTypes(exportsFileID, moduleName) {
+function checkExportsFileIDParameterType(exportsFileID) {
   if( kindOf(exportsFileID) !== 'string' )
-    throwTypeError('id parameter must be a string');
-
+    throwTypeError('exportsFileID parameter must be a string');
+}
+function checkModuleNameParameterType(moduleName) {
   if( kindOf(moduleName) !== 'string' )
     throwTypeError('moduleName parameter must be a string');
 }
@@ -23,7 +24,8 @@ function throwTypeError(message) {
 }
 
 module.exports = {
-  checkParameterTypes,
+  checkExportsFileIDParameterType,
+  checkModuleNameParameterType,
   checkExportsFileIDType,
   checkExportsFileExportsType
 };
