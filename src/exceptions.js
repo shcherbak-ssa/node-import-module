@@ -8,7 +8,7 @@ const exceptions = {
     return `the id field cannot be empty: {\n  path: ${exportsFilePath}\n}`;
   },
   throwIDDoesNotExist(exportsFileID) {
-    return `exports file with id ${exportsFileID} does not exist`;
+    return `exports file with id '${exportsFileID}' does not exist`;
   },
   throwExportsFieldDidNotFind(exportsFilePath) {
     return `did not find the exports field: {\n  path: ${exportsFilePath}\n}`;
