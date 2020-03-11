@@ -1,6 +1,6 @@
 {
   "name": "node-import-module",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "This is an npm package that saves you from long paths to modules.",
   "main": "nim.js",
   "scripts": {
