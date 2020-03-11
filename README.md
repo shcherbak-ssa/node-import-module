@@ -10,7 +10,10 @@ This is an npm package that saves you from long paths to modules.
  - [How does this work?](#how-does-this-work)
  - [API](#api)
    * [Import funtions](#import-function)
+   * [Object syntax](#object-syntax)
+   * [Restructuring syntax](#restructuring-syntax)
    * [Exports file](#exports-file)
+ - [Features](#features)
  - [Footer](#footer)
    * [Issues](#issues)
    * [Author](#author)
@@ -65,14 +68,36 @@ module.exports = {
 
 const importModule = require('node-import-module');
 
-const initApp = importModule('app', 'launcher');
-// initApp === require('./components/app/launcher')
+const appLauncher = importModule('app', 'launcher');
+// appLauncher === require('./components/app/launcher')
 
 const appConfig = importModule('app', 'config');
 // appConfig === require('./components/app/config/app-config.json')
 
 const createApp = importModule('app', 'create');
 // createApp === require('./components/app/actions/rest/create-app')
+
+/**
+ * OR with object syntax
+*/
+
+const importModule = require('node-import-module');
+
+const appLauncher = importModule.app('launcher');
+const appConfig = importModule.app('config');
+const createApp = importModule.app('create');
+
+/**
+ * OR with destructuring syntax
+*/
+
+const {app: importApp} = require('node-import-module');
+// same as
+const {importApp} = require('node-import-module'); // see description below
+
+const appLauncher = importApp('launcher');
+const appConfig = importApp('config');
+const createApp = importApp('create');
 ```
 
 ## How does this work? ##
@@ -111,6 +136,44 @@ Returns a found module or throw exception if an error happens.
  - **moduleName : String**<br>
    One of the keys of the exports object in the *exports* file.
 
+### Object syntax ###
+
+**importModule.app( moduleName : String ) : Module**
+
+You can use the [import function](#import-function) as an object,
+where properties should be equal the *id* fields of the *exports* files.
+
+*Parameters:* - see description above.
+
+### Destructuring syntax ###
+
+When using the [object syntax](#object-syntax) you can use destructuring (ES6):
+
+```javascript
+const {app} = require('node-import-module');
+const someModule = app('someModule');
+
+// The code above is the same as using the object syntax:
+const importModule = require('node-import-module');
+const someModule = importModule.app('someModule');
+```
+
+But it does not look very good. You can solve it by renaming the property name:
+
+```javascript
+const {app: importApp} = require('node-import-module');
+const someModule = importApp('someModule');
+```
+
+And this is not the best way. To make the code cleaner *node-import-module* supports *smart destructuring*:
+a property name can be replaced with the template `import[exportsFileID]`,
+where the first letter *exportsFileID* must be uppercase.
+
+```javascript
+const {importApp} = require('node-import-module');
+// === {app: importApp}
+```
+
 ### *Exports* file ###
 
 A file that contains the paths of files to be exported.
@@ -126,6 +189,16 @@ The *exports* file name can be any, but must satisfy the pattern `*.exports.js`.
 
    * **name : String** - The unique name of the module.
    * **path** - The path to the module relative to the current *exports* file.
+
+## Features ##
+
+ - [x] Write a working version
+ - [x] Object syntax
+ - [x] Destructuring syntax
+ - [ ] Global modules
+ - [ ] Custom name of import function
+ - [ ] Anything else
+
 
 ## Footer ##
 
