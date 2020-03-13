@@ -9,10 +9,11 @@ This is an npm package that saves you from long paths to modules.
  - [Usage](#usage)
  - [How does this work?](#how-does-this-work)
  - [API](#api)
-   * [Import funtions](#import-function)
+   * [Import funtion](#import-function)
    * [Object syntax](#object-syntax)
    * [Restructuring syntax](#restructuring-syntax)
    * [Exports file](#exports-file)
+   * [Import global modules](#import-global-modules)
  - [Features](#features)
  - [Footer](#footer)
    * [Issues](#issues)
@@ -162,7 +163,7 @@ But it does not look very good. You can solve it by renaming the property name:
 
 ```javascript
 const {app: importApp} = require('node-import-module');
-const someModule = importApp('someModule');
+const someModule = importApp('some-module');
 ```
 
 And this is not the best way. To make the code cleaner *node-import-module* supports *smart destructuring*:
@@ -189,12 +190,47 @@ The *exports* file name can be any, but must satisfy the pattern `*.exports.js`.
    * **name : String** - The unique name of the module.
    * **path** - The path to the module relative to the current *exports* file.
 
+### Import global modules ###
+
+You can define some modules as *global* modules.
+To do this, you should create an [*exports* file](#exports-file) with the following content:
+
+*global.exports.js (for example)*
+
+```javascript
+'use strict'
+
+module.exports = {
+  id: '$', // '$' - symbol that defines a global exports file
+  exports: {
+    // your global modules
+  }
+};
+```
+
+And use as:
+
+```javascript
+const importModule = require('node-import-module');
+const someGlobalModule = importModule('some-global-module');
+// note: only one parameter - moduleName
+
+// OR with objext syntax
+
+const someGlobalModule = importModule.$('some-global-module');
+
+// OR with destructuring syntax
+
+const {$} = require('node-import-module');
+const someGlobalModule = $('some-global-module');
+```
+
 ## Features ##
 
  - [x] Write a working version
  - [x] Object syntax
  - [x] Destructuring syntax
- - [ ] Global modules
+ - [x] Global modules
  - [ ] Custom name of import function
  - [ ] Anything else
 

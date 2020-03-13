@@ -18,9 +18,21 @@ const moduleImporter = launcher.init(parentDirname);
  * @param {String} moduleName 
  */
 function importModule(exportsFileID, moduleName) {
+  if( moduleName === undefined ) {
+    moduleName = exportsFileID;
+    return importGlobalModule(moduleName);
+  }
+
+  return importRequiredModule(exportsFileID, moduleName)
+}
+
+function importGlobalModule(moduleName) {
+  checkModuleNameParameterType(moduleName);
+  return moduleImporter.importModule('$', moduleName);
+}
+function importRequiredModule(exportsFileID, moduleName) {
   checkExportsFileIDParameterType(exportsFileID);
   checkModuleNameParameterType(moduleName);
-
   return moduleImporter.importModule(exportsFileID, moduleName);
 }
 
