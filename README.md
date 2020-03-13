@@ -152,11 +152,11 @@ When using the [object syntax](#object-syntax) you can use destructuring (ES6):
 
 ```javascript
 const {app} = require('node-import-module');
-const someModule = app('someModule');
+const someModule = app('some-module');
 
 // The code above is the same as using the object syntax:
 const importModule = require('node-import-module');
-const someModule = importModule.app('someModule');
+const someModule = importModule.app('some-module');
 ```
 
 But it does not look very good. You can solve it by renaming the property name:
